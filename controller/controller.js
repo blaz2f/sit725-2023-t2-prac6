@@ -14,7 +14,6 @@ function deleteCat(req, res) {
     var ids_list = JSON.parse(req.body.$in)
     var obj_ids_list = ids_list.map(function(id) { return bson.ObjectId(id); });
     let cat = { '_id': { '$in':  obj_ids_list} };
-    console.log(cat);
     collection.deleteCat(cat, (err, result) => {
         if (!err) {
             res.json({ statusCode: 202, data: result, message: 'success' });
